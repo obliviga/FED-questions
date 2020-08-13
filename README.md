@@ -6,12 +6,13 @@
 I've used some aspects of OOCSS. At one of my previous roles, were using an internal CSS framework similar to [Tailwind CSS](https://tailwindcss.com). The purpose of this solution was to write as little CSS as possible via utility classes.
 
 #### Here are some benefits I found using an OOCSS framework:
- - **Page speed** - More custom CSS that's written for each component, the more there is potential for your bundled CSS file to exponentially increase in size. Since OOCSS allows you to write less CSS, your bundled CSS file should be smaller, resulting faster page load.
+ - **Page speed** - The more custom CSS, the more there is potential for your bundled CSS file to exponentially increase in size. Since OOCSS allows you to write less CSS, your bundled CSS file should be smaller, resulting faster page load.
  - **Coding speed** - When I first experienced a utility-first framework, I have to admit that I was skeptical. I came from a background of writing custom CSS, simply just scoped in a containing class like `.accordionContainer`. However, over time, I've inadvertently memorized most of the util classes and feel like I'm able to style components and layouts way quicker.
 
 #### Here's a major disadvantage of OOCSS in my opinion:
- - **Readability/Debugging** - Sometimes an HTML element has so many util classes, it becomes overwhelming hard to read and debug. For instance: `<input class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" />`. If this element was styled with SCSS, many of its styles would appear in one block in the Chrome devtools, and it would be way easier to uncheck and check the styles to help debugging.
+ - **Readability/Debugging** - Sometimes an HTML element has so many util classes, it becomes overwhelmingly hard to read and debug. For instance: `<input class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" />`. If this element was styled with SCSS, many of its styles would appear within one block in the Chrome devtools, and it would be way easier to uncheck and check the styles to help with debugging.
 
+#### BEM
 When creating carousels with [GlideJS](Glide.js), the markup uses BEM style class names like `glide__arrows`. It's nice writing readable code like this:
 
     .glide {
@@ -42,8 +43,8 @@ Here are some considerations that every UI developer should make in terms of acc
 
  - Make sure that your entire website can be navigable via keyboard. Many users with disabilities aren't able to use a mouse or trackpad, so it's extremely important that ALL of your interactive UI elements can be cycled through using the Tab key.
  - Make sure that any element with a click handler can also be activated with the Enter key.
- - I recommend using a free screenreader for Google Chrome called [ChromeVox](https://chrome.google.com/webstore/detail/chromevox-classic-extensi/kgejglhpjiefppelpmljglcjbhoiplfn?hl=en). It's developed by Google and works really well in my opinion. Try closing your eyes for the purpose of empathizing with a blind user, then ChromeVox to navigate your website. Doing so may help you find [keyboard traps](https://accessibility.18f.gov/keyboard/) or other stark usability defects.
- - If you're building a website that contains a bunch of navigation UI at the top of the DOM, then you should add an anchor at the top of the DOM that only screenreaders are able to access. This anchor should allow a screenreader user to skip to the main content of the webpage. Otherwise, a screenreader user would have to tab through each navigation item in order to arrive at the main content of the webpage.
+ - I recommend using a free screenreader for Google Chrome called [ChromeVox](https://chrome.google.com/webstore/detail/chromevox-classic-extensi/kgejglhpjiefppelpmljglcjbhoiplfn?hl=en). It's developed by Google and works really well in my opinion. Try closing your eyes for the purpose of empathizing with a blind user, then use ChromeVox to navigate your website. Doing so may help you find [keyboard traps](https://accessibility.18f.gov/keyboard/) or other stark usability defects.
+ - If you're building a website that contains a bunch of navigation UI at the top of the DOM, then you should add an anchor at the top of the DOM that only screenreaders are able to access. This anchor should allow a screenreader user to skip to the main content of the webpage. Otherwise, a screenreader user would have to tab through each navigation item in order to arrive at the main content of the webpage, which is inconsiderate of the developer.
 
 ## Describe what you like and dislike about CSS preprocessors
 
@@ -71,8 +72,8 @@ I've built a couple of simple SPAs like [Gasatob](https://www.gasatob.com) and [
 
 ## Have you ever worked with retina graphics? What techniques would/did you use? What works and what doesn't about those techniques?
 
+So if your webpage is serving an image, you want to make sure the image resolution isn't blurry on screens with high pixel density like retina screens. One technique is using the `-webkit-min-device-pixel-ratio` or `-moz-device-pixel-ratio` CSS media attributes to target different pixel densities. The problem with this method is that it's not standardized, and may cause issues with certain users, so I don't recommend this method.
 
+The other method that I've used in the past is taking advantage of the `<picture>` element's `srcset` attribute. You can define the image URL, and append a 1x or 2x to it, depending on what image you want to serve for what pixel density. For browsers that may not support the `srcset` attribute, simply use an `<img>` element within the `<picture>` element as a fallback.
 
-
-
-	
+If your website has icons, make sure the icons are SVGs and not a standard image format like PNG or JPG. SVGs maintain their resolution no matter the screen size or screen type. Another reason why SVG icons are preferable is because you can style them with CSS.
