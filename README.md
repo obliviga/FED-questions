@@ -10,7 +10,7 @@ I've used some aspects of OOCSS. At one of my previous roles, were using an inte
  - **Coding speed** - When I first experienced a utility-first framework, I have to admit that I was skeptical. I came from a background of writing custom CSS, simply just scoped in a containing class like `.accordionContainer`. However, over time, I've inadvertently memorized most of the util classes and feel like I'm able to style components and layouts way quicker.
 
 #### Here's a major disadvantage of OOCSS in my opinion:
- - **Readability/Debugging** - Sometimes an HTML element has so many util classes, it becomes overwhelming hard to read and debug. For instance: `<input class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal`. If this element was styled with SCSS, many of its styles would appear in one block in the Chrome devtools, and it would be way easier to uncheck and check the styles to help debugging.
+ - **Readability/Debugging** - Sometimes an HTML element has so many util classes, it becomes overwhelming hard to read and debug. For instance: `<input class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" />`. If this element was styled with SCSS, many of its styles would appear in one block in the Chrome devtools, and it would be way easier to uncheck and check the styles to help debugging.
 
 When creating carousels with [GlideJS](Glide.js), the markup uses BEM style class names like `glide__arrows`. It's nice writing readable code like this:
 
